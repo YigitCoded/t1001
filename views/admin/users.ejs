@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin — Kullanıcılar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <div class="container">
+    <h1>Kullanıcılar</h1>
+    <table class="table">
+      <thead>
+        <tr><th>ID</th><th>Email</th><th>Rol</th><th>İşlem</th></tr>
+      </thead>
+      <tbody>
+        <% users.forEach(u => { %>
+          <tr>
+            <td><%= u.id %></td>
+            <td><%= u.email %></td>
+            <td><%= u.role %></td>
+            <td>
+              <form method="POST" action="/admin/users/<%= u.id %>/role" class="inline">
+                <select name="role">
+                  <option value="user" <%= u.role==='user'?'selected':'' %>>user</option>
+                  <option value="admin" <%= u.role==='admin'?'selected':'' %>>admin</option>
+                </select>
+                <button class="btn" type="submit">Kaydet</button>
+              
+              <form method="POST" action="/admin/users/<%= u.id %>/delete" class="inline" 
+      onsubmit="return confirm('Bu kullanıcı silinsin mi?');">
+  <button class="btn danger" type="submit">Sil</button>
+</form>
+
+<form method="POST" action="/admin/users/<%= u.id %>/reset" class="inline">
+  <input type="text" name="newPassword" placeholder="Yeni şifre" required />
+  <button class="btn" type="submit">Resetle</button>
+</form>
+
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

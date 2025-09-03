@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Kayıt — t1001</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <div class="container">
+    <h1>Kayıt Ol</h1>
+    <form class="card" method="POST" action="/register">
+      <label>Email</label>
+      <input name="email" type="email" required />
+      <label>Şifre</label>
+      <input name="password" type="password" required />
+      <button type="submit">Hesap Oluştur</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<header class="header">
+  <div class="container row">
+    <div><a class="brand" href="/"><%= appName %></a></div>
+    <nav class="row gap">
+      <% if (currentUser) { %>
+        <a href="/notes">Notlarım</a>
+        <% if (currentUser.role === 'admin') { %>
+          <a href="/admin">Admin</a>
+        <% } %>
+        <form method="POST" action="/logout" style="display:inline">
+          <button class="btn secondary" type="submit">Çıkış</button>
+        </form>
+      <% } else { %>
+        <a href="/login">Giriş</a>
+        <a href="/register">Kayıt</a>
+      <% } %>
+    </nav>
+  </div>
+</header>

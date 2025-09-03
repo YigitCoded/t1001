@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin — Notlar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <div class="container">
+    <h1>Tüm Notlar</h1>
+    <ul class="notes">
+      <% if (notes.length === 0) { %>
+        <li class="muted">Not yok.</li>
+      <% } %>
+      <% notes.forEach(n => { %>
+        <li class="note">
+          <div class="note-head">
+            <strong>#<%= n.id %> — <%= n.title %></strong>
+            <span class="date">
+              <%= n.updated_human ? ('Güncellendi: ' + n.updated_human) : ('Oluşturuldu: ' + n.created_human) %>
+              — Sahibi: <%= n.owner_email %>
+            </span>
+          </div>
+          <% if (n.content) { %><p><%= n.content %></p><% } %>
+          <div class="actions">
+            <form method="POST" action="/admin/notes/<%= n.id %>/delete" onsubmit="return confirm('Not silinsin mi?');">
+              <button class="btn danger" type="submit">Sil</button>
+            </form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>

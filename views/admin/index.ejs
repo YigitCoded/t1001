@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin — t1001</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <div class="container">
+    <h1>Admin Panel</h1>
+    <div class="grid">
+      <div class="card">
+        <h3>Kullanıcı Sayısı</h3>
+        <p class="stat"><%= stats.users %></p>
+      </div>
+      <div class="card">
+        <h3>Not Sayısı</h3>
+        <p class="stat"><%= stats.notes %></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Son Notlar</h3>
+      <ul class="notes">
+        <% stats.latest.forEach(n => { %>
+          <li class="note">
+            <div class="note-head">
+              <strong><%= n.title %></strong>
+              <span class="date">Sahibi: <%= n.owner_email %> — <%= n.created_at %></span>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <div class="row gap">
+      <a class="btn" href="/admin/users">Kullanıcılar</a>
+      <a class="btn" href="/admin/notes">Tüm Notlar</a>
+    </div>
+  </div>
+</body>
+</html>

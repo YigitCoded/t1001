@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Not Düzenle — t1001</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <div class="container">
+    <h1>Not Düzenle</h1>
+    <form class="card" method="POST" action="/notes/<%= note.id %>">
+      <label>Başlık</label>
+      <input name="title" value="<%= note.title %>" required />
+      <label>İçerik</label>
+      <textarea name="content" rows="6"><%= note.content || '' %></textarea>
+      <div class="actions">
+        <a class="btn secondary" href="/notes">İptal</a>
+        <button type="submit">Kaydet</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

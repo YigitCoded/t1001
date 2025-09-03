@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Notlarım — t1001</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <div class="container">
+    <h1>Notlarım</h1>
+
+    <form class="card" method="POST" action="/notes">
+      <h2>Yeni Not</h2>
+      <label>Başlık</label>
+      <input name="title" required />
+      <label>İçerik</label>
+      <textarea name="content" rows="4"></textarea>
+      <button type="submit">Ekle</button>
+    </form>
+
+    <h2>Mevcut Notlar</h2>
+    <ul class="notes">
+      <% if (notes.length === 0) { %>
+        <li class="muted">Henüz not yok.</li>
+      <% } %>
+      <% notes.forEach(n => { %>
+        <li class="note">
+          <div class="note-head">
+            <strong><%= n.title %></strong>
+            <span class="date">
+              <%= n.updated_human ? ('Güncellendi: ' + n.updated_human) : ('Oluşturuldu: ' + n.created_human) %>
+            </span>
+          </div>
+          <% if (n.content) { %><p><%= n.content %></p><% } %>
+          <div class="actions">
+            <a class="btn secondary" href="/notes/<%= n.id %>/edit">Düzenle</a>
+            <form method="POST" action="/notes/<%= n.id %>/delete" onsubmit="return confirm('Silinsin mi?');">
+              <button class="btn danger" type="submit">Sil</button>
+            </form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>
