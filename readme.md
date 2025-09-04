@@ -31,6 +31,7 @@ Each user has their own account and can only manage their own notes, while admin
 ![Screenshot 2](assets/2.PNG)
 ![Screenshot 3](assets/3.PNG)
 ![Screenshot 4](assets/4.PNG)
-![Screenshot 5](assets/5.PNG)
+![Screenshot 5](assets/6.PNG)
+
 
 
